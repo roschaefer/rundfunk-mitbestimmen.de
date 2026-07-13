@@ -233,8 +233,7 @@
         padding-bottom: 44px;
       }
 
-      section,
-      .privacy {
+      section {
         padding-top: 24px;
         border-top: 2px solid var(--line);
       }
@@ -245,20 +244,9 @@
       }
 
       section p,
-      section ul,
-      .privacy p {
+      section ul {
         margin: 0;
         color: var(--muted);
-      }
-
-      .privacy {
-        max-width: 820px;
-        padding-bottom: 52px;
-      }
-
-      .privacy p + h2,
-      .privacy p + p {
-        margin-top: 16px;
       }
 
       ul {
@@ -323,7 +311,8 @@
         </div>
         <nav aria-label="Kontakt und Projektlinks">
           <a href="#kontakt">Kontakt</a>
-          <a href="#datenschutz">Datenschutz</a>
+          <a href="impressum/">Impressum</a>
+          <a href="datenschutz/">Datenschutz</a>
           <a href="https://github.com/roschaefer/rundfunk-mitbestimmen">Quellcode</a>
           <a href="https://github.com/roschaefer">Maintainer</a>
         </nav>
@@ -333,7 +322,7 @@
         <div class="hero">
           <div>
             <p class="kicker">Archivierte Projektseite</p>
-            <h1>Beitragszahler wollten Rundfunk mitbestimmen.</h1>
+            <h1>Beitragszahler wollten Rundfunk mitbestimmen</h1>
             <p class="intro">
               Diese Website war ein Werkzeug, mit dem Menschen ihren monatlichen
               Rundfunkbeitrag virtuell auf Sendungen verteilen konnten. Der
@@ -381,7 +370,7 @@
             <h2>Was gezeigt wurde</h2>
             <ul>
               <li>Beitragszahler interessieren sich dafür, wie ihre Beiträge verwendet werden.</li>
-              <li>Die Verteilung von Rundfunkbeiträgen ließ sich als Internetdienst technisch abbilden.</li>
+              <li>Die technische Umsetzung ist machbar.</li>
               <li>Die Ergebnisse können sich deutlich von TV-Quoten unterscheiden.</li>
             </ul>
           </section>
@@ -397,41 +386,11 @@
             </p>
           </section>
         </div>
-
-        <section class="privacy" id="datenschutz">
-          <h2>Datenschutzerklärung</h2>
-          <p>
-            Diese statische Website setzt keine Cookies, verwendet keine
-            Analysewerkzeuge und bindet keine Inhalte Dritter ein.
-          </p>
-          <p>
-            Beim Aufruf der Website können durch den Hosting-Anbieter technisch
-            notwendige Zugriffsdaten verarbeitet werden, zum Beispiel IP-Adresse,
-            Zeitpunkt des Abrufs, angeforderte Datei, übertragene Datenmenge und
-            Browserinformationen. Diese Verarbeitung dient der Bereitstellung,
-            Sicherheit und Stabilität der Website.
-          </p>
-          <p>
-            Wenn Sie per E-Mail Kontakt aufnehmen, werden die von Ihnen
-            übermittelten Angaben zur Bearbeitung der Anfrage verarbeitet. Die
-            Daten werden nicht für Werbung genutzt und nicht ohne Anlass an
-            Dritte weitergegeben.
-          </p>
-          <p>
-            Verantwortlich für diese Website ist der Betreiber von
-            rundfunk-mitbestimmen.de, erreichbar unter
-            <a href="mailto:kontakt@rundfunk-mitbestimmen.de">kontakt@rundfunk-mitbestimmen.de</a>.
-            Betroffene Personen haben nach der Datenschutz-Grundverordnung unter
-            anderem Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung
-            der Verarbeitung, Widerspruch und Beschwerde bei einer
-            Datenschutzaufsichtsbehörde.
-          </p>
-        </section>
       </main>
 
       <footer>
         <span>Rundfunk mitbestimmen ist nicht mehr als Dienst aktiv.</span>
-        <span><a href="#datenschutz">Datenschutz</a> · Archiviertes Open-Source-Projekt unter MIT-Lizenz.</span>
+        <span><a href="impressum/">Impressum</a> · <a href="datenschutz/">Datenschutz</a> · Archiviertes Open-Source-Projekt unter MIT-Lizenz.</span>
       </footer>
     </div>
   </body>
