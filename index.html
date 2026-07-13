@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rundfunk mitbestimmen</title>
+    <meta
+      name="description"
+      content="Rundfunk mitbestimmen war ein Machbarkeitsnachweis für Beteiligung an der Verteilung des Rundfunkbeitrags."
+    >
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #1b2430;
+        --muted: #52616f;
+        --paper: #f7f4ee;
+        --line: #d9d2c3;
+        --accent: #0f766e;
+        --accent-dark: #115e59;
+        --gold: #d89b2b;
+        --rose: #bc4b51;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.5;
+        color: var(--ink);
+        background: var(--paper);
+      }
+
+      a {
+        color: var(--accent-dark);
+        text-underline-offset: 0.18em;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      header,
+      main,
+      footer {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        padding: 28px 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        color: #ffffff;
+        background: var(--accent);
+        font-weight: 900;
+      }
+
+      nav {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        font-size: 0.95rem;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.72fr);
+        gap: 44px;
+        align-items: center;
+        padding: 48px 0 60px;
+      }
+
+      .kicker {
+        margin: 0 0 14px;
+        color: var(--accent-dark);
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(2.55rem, 6vw, 5.8rem);
+        line-height: 0.96;
+        letter-spacing: 0;
+      }
+
+      .intro {
+        margin: 28px 0 0;
+        max-width: 680px;
+        color: var(--muted);
+        font-size: clamp(1.05rem, 2vw, 1.32rem);
+      }
+
+      .actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 34px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        background: var(--accent);
+        color: #ffffff;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .button.secondary {
+        color: var(--accent-dark);
+        background: transparent;
+      }
+
+      .visual {
+        position: relative;
+        min-height: 340px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58)),
+          repeating-linear-gradient(
+            90deg,
+            rgba(27, 36, 48, 0.08) 0,
+            rgba(27, 36, 48, 0.08) 1px,
+            transparent 1px,
+            transparent 76px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            rgba(27, 36, 48, 0.08) 0,
+            rgba(27, 36, 48, 0.08) 1px,
+            transparent 1px,
+            transparent 76px
+          ),
+          #ffffff;
+      }
+
+      .visual::before {
+        content: "";
+        position: absolute;
+        inset: 26px;
+        border: 1px solid rgba(27, 36, 48, 0.16);
+        border-radius: 8px;
+      }
+
+      .result-bars {
+        position: absolute;
+        inset: auto 32px 42px;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        align-items: end;
+        gap: 12px;
+        height: 170px;
+      }
+
+      .bar {
+        min-width: 0;
+        border-radius: 7px 7px 0 0;
+        background: var(--accent);
+        box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.7) inset;
+      }
+
+      .bar:nth-child(2),
+      .bar:nth-child(6) {
+        background: var(--gold);
+      }
+
+      .bar:nth-child(4) {
+        background: var(--rose);
+      }
+
+      .signal {
+        position: absolute;
+        top: 34px;
+        left: 32px;
+        right: 32px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        align-items: start;
+      }
+
+      .signal strong {
+        display: block;
+        max-width: 280px;
+        font-size: 1.08rem;
+        line-height: 1.2;
+      }
+
+      .signal span {
+        color: var(--muted);
+      }
+
+      .sections {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+        padding-bottom: 44px;
+      }
+
+      section,
+      .privacy {
+        padding-top: 24px;
+        border-top: 2px solid var(--line);
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 1.18rem;
+      }
+
+      section p,
+      section ul,
+      .privacy p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .privacy {
+        max-width: 820px;
+        padding-bottom: 52px;
+      }
+
+      .privacy p + h2,
+      .privacy p + p {
+        margin-top: 16px;
+      }
+
+      ul {
+        padding-left: 1.1rem;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding: 26px 0 34px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 840px) {
+        header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .hero,
+        .sections {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          gap: 34px;
+          padding-top: 24px;
+        }
+
+        .visual {
+          min-height: 330px;
+        }
+
+        .result-bars {
+          inset: auto 28px 42px;
+          gap: 10px;
+          height: 170px;
+        }
+
+        .signal {
+          top: 30px;
+          left: 28px;
+          right: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="brand" aria-label="Rundfunk mitbestimmen">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span>Rundfunk mitbestimmen</span>
+        </div>
+        <nav aria-label="Kontakt und Projektlinks">
+          <a href="#kontakt">Kontakt</a>
+          <a href="#datenschutz">Datenschutz</a>
+          <a href="https://github.com/roschaefer/rundfunk-mitbestimmen">Quellcode</a>
+          <a href="https://github.com/roschaefer">Maintainer</a>
+        </nav>
+      </header>
+
+      <main>
+        <div class="hero">
+          <div>
+            <p class="kicker">Archivierte Projektseite</p>
+            <h1>Beitragszahler wollten Rundfunk mitbestimmen.</h1>
+            <p class="intro">
+              Diese Website war ein Werkzeug, mit dem Menschen ihren monatlichen
+              Rundfunkbeitrag virtuell auf Sendungen verteilen konnten. Der
+              Dienst ist nicht mehr aktiv, die Idee und der Quellcode bleiben
+              öffentlich dokumentiert.
+            </p>
+            <div class="actions">
+              <a class="button" href="mailto:kontakt@rundfunk-mitbestimmen.de">Kontakt aufnehmen</a>
+              <a class="button secondary" href="https://github.com/roschaefer/rundfunk-mitbestimmen">
+                Code ansehen
+              </a>
+            </div>
+          </div>
+
+          <div class="visual" aria-label="Abstrakte Ergebnisgrafik zur Beitragsverteilung">
+            <div class="signal">
+              <div>
+                <strong>Andere Daten als Einschaltquoten</strong>
+                <span>Interesse, Zustimmung und Zahlungsbereitschaft sichtbar machen.</span>
+              </div>
+            </div>
+            <div class="result-bars" aria-hidden="true">
+              <div class="bar" style="height: 58%"></div>
+              <div class="bar" style="height: 82%"></div>
+              <div class="bar" style="height: 44%"></div>
+              <div class="bar" style="height: 68%"></div>
+              <div class="bar" style="height: 91%"></div>
+              <div class="bar" style="height: 53%"></div>
+              <div class="bar" style="height: 74%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sections">
+          <section>
+            <h2>Worum es ging</h2>
+            <p>
+              Rundfunk mitbestimmen war ein Machbarkeitsnachweis für digitale
+              Beteiligung an der Frage, welche öffentlich finanzierten Inhalte
+              Menschen wertvoll finden.
+            </p>
+          </section>
+
+          <section>
+            <h2>Was gezeigt wurde</h2>
+            <ul>
+              <li>Beitragszahler interessieren sich dafür, wie ihre Beiträge verwendet werden.</li>
+              <li>Die Verteilung von Rundfunkbeiträgen ließ sich als Internetdienst technisch abbilden.</li>
+              <li>Die Ergebnisse können sich deutlich von TV-Quoten unterscheiden.</li>
+            </ul>
+          </section>
+
+          <section id="kontakt">
+            <h2>Kontakt</h2>
+            <p>
+              Fragen zur Idee, zum archivierten Code oder zu einer möglichen
+              Weiterführung am besten über
+              <a href="https://github.com/roschaefer/rundfunk-mitbestimmen/issues">GitHub Issues</a>
+              oder per E-Mail an
+              <a href="mailto:kontakt@rundfunk-mitbestimmen.de">kontakt@rundfunk-mitbestimmen.de</a>.
+            </p>
+          </section>
+        </div>
+
+        <section class="privacy" id="datenschutz">
+          <h2>Datenschutzerklärung</h2>
+          <p>
+            Diese statische Website setzt keine Cookies, verwendet keine
+            Analysewerkzeuge und bindet keine Inhalte Dritter ein.
+          </p>
+          <p>
+            Beim Aufruf der Website können durch den Hosting-Anbieter technisch
+            notwendige Zugriffsdaten verarbeitet werden, zum Beispiel IP-Adresse,
+            Zeitpunkt des Abrufs, angeforderte Datei, übertragene Datenmenge und
+            Browserinformationen. Diese Verarbeitung dient der Bereitstellung,
+            Sicherheit und Stabilität der Website.
+          </p>
+          <p>
+            Wenn Sie per E-Mail Kontakt aufnehmen, werden die von Ihnen
+            übermittelten Angaben zur Bearbeitung der Anfrage verarbeitet. Die
+            Daten werden nicht für Werbung genutzt und nicht ohne Anlass an
+            Dritte weitergegeben.
+          </p>
+          <p>
+            Verantwortlich für diese Website ist der Betreiber von
+            rundfunk-mitbestimmen.de, erreichbar unter
+            <a href="mailto:kontakt@rundfunk-mitbestimmen.de">kontakt@rundfunk-mitbestimmen.de</a>.
+            Betroffene Personen haben nach der Datenschutz-Grundverordnung unter
+            anderem Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung
+            der Verarbeitung, Widerspruch und Beschwerde bei einer
+            Datenschutzaufsichtsbehörde.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <span>Rundfunk mitbestimmen ist nicht mehr als Dienst aktiv.</span>
+        <span><a href="#datenschutz">Datenschutz</a> · Archiviertes Open-Source-Projekt unter MIT-Lizenz.</span>
+      </footer>
+    </div>
+  </body>
+</html>
